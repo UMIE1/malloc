@@ -1,0 +1,94 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<errno.h>
+
+int main()
+{
+	//calloc开辟一个数组空间，值全为0；
+	int* p = malloc(10, sizeof(int));
+	if (p == NULL)
+	{
+		printf("%s\n", strerror(errno));
+	}
+	else
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			*(p + i) = i;
+		}
+		for (int i = 0; i < 10; i++)
+		{
+			printf("%d ", *(p + i));
+		}
+	}
+	//用完free函数使用的空间，并使指针指向NULL
+	free(p);
+	p = NULL;
+	return 0;
+}
+int main()
+{
+	//calloc
+	int* p = calloc(10, sizeof(int));
+	if (p == NULL)
+	{
+		printf("%s\n", strerror(errno));
+	}
+	else
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			printf("%d ", *(p + i));
+		}
+	}
+	free(p);
+	p = NULL;
+	return 0;
+}
+int main()
+{
+
+	//error
+	//对NULL进行解引用
+	//越界访问 开辟的字节不够使用，产生越界访问的错误。
+	//对非动态开辟的空间进行free，error
+	//使用free释放开辟内存的一部分
+	//使用free释放一个开辟的空间两次
+	//动态开辟的内存未释放 造成内存泄露while（1）{malloc(1)},将会一直申请内存，造成内存泄露。
+	int* p = (int *)malloc(40,sizeof(int));//calloc(数组大小，数组元素大小)
+	if (p == NULL)
+	{
+		printf("%s\n", strerror(errno));
+		return 0;
+	}
+		int i = 0;
+		for (i = 0; i < 10; i++)
+		{
+			*(p + i) = i;
+		}
+		for (int j = 0; j < 10; j++)
+		{
+			printf("%d ", *(p+j));
+		}	
+	free(p);
+	p = NULL;
+	return 0;
+}
+
+void test()
+{
+	char*str = NULL;
+	
+	str = (char*)malloc(100);
+	strcpy(str, "hello word");
+	printf(str);
+	free(str);
+	str = NULL;
+}
+int main()
+{
+	test();
+	return 0;
+}
