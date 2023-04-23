@@ -1,3 +1,12 @@
+//Realloc int*p=realloc(p,20);当使用malloc/calloc函数内存不够用的时候，可以使用realloc函数追加空间
+//Realloc 函数使用的注意事项：
+
+//1.	如果p指向的空间的后面的空间够我们追加的空间，reaclloc函数就会在原来的空间的后面追加我们想要的总体的空间大小。追加之后，返回p；
+//2.	如果p指向的空间的后面没有足够的空间可以追加，则realloc函数会重新找一个新的空间来开辟一块满足需求的空间，并将原来的空间中的数据拷贝过来，释放旧的内存空间，最后返回新开辟的内存空间的地址。
+//3.	使用一个新的变量来接受realloc函数返回的地址，他可能和原来的变量的地址不相同，可以通过if语句进行比较。
+
+
+
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
 #include<string.h>
